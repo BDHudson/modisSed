@@ -2,6 +2,7 @@
 #######################################################################################
 ############### User Defined Settings #################################################
 
+# This code was adapted from code Katy Barnhart wrote
 
 #address='BDHudson@gmail.com' # your email address
 #address='Benjamin.Hudson@colorado.edu'
@@ -115,13 +116,31 @@ for f in range(len(fjord)):
 				print "searching for: ", p, dnb
 				try:
 					# search for files
-					fIDs=client.searchForFiles(product=p,collection=c, startTime=st, endTime=et, north=n, south=s, east=e, west=w, coordsOrTiles='coords', dayNightBoth=dnb)
+					fIDs=client.searchForFiles(product=p,
+								   collection=c, 
+								   startTime=st, 
+								   endTime=et, 
+								   north=n, 
+								   south=s, 
+								   east=e, 
+								   west=w, 
+								   coordsOrTiles='coords', 
+								   dayNightBoth=dnb)
 				except:
 					print "exception raised, tring client again." 
 					
 					client = SOAPProxy(clientUrl);
 					time.sleep(10)
-					fIDs=client.searchForFiles(product=p,collection=c, startTime=st, endTime=et, north=n, south=s, east=e, west=w, coordsOrTiles='coords', dayNightBoth=dnb)
+					fIDs=client.searchForFiles(product=p,
+								   collection=c, 
+								   startTime=st, 
+								   endTime=et, 
+								   north=n, 
+								   south=s, 
+								   east=e, 
+								   west=w, 
+								   coordsOrTiles='coords', 
+								   dayNightBoth=dnb)
 
 					print "looks like we re-established contact."
 					
@@ -175,7 +194,12 @@ for f in range(len(fjord)):
 			print fLim, 	" files or end of file list reached, ordering files"	
 			try:
 				# place order. This is where subsetting and projection can occur.
-				oID=client.orderFiles(email=address, fileIds=fileString, geoSubsetNorth=n, geoSubsetSouth=s, geoSubsetWest=w, geoSubsetEast=e) 
+				oID=client.orderFiles(email=address, 
+						      fileIds=fileString, 
+						      geoSubsetNorth=n, 
+						      geoSubsetSouth=s, 
+						      geoSubsetWest=w, 
+						      geoSubsetEast=e) 
 			except:
 				print "exception raised, tring client again." 
 				
@@ -184,7 +208,12 @@ for f in range(len(fjord)):
 				
 				print "looks like we re-established contact."
 				
-				oID=client.orderFiles(email=address, fileIds=fileString, geoSubsetNorth=n, geoSubsetSouth=s, geoSubsetWest=w, geoSubsetEast=e) 
+				oID=client.orderFiles(email=address, 
+						      fileIds=fileString, 
+						      geoSubsetNorth=n, 
+						      geoSubsetSouth=s, 
+						      geoSubsetWest=w, 
+						      geoSubsetEast=e) 
 
 			print "ordering complete. Order Numbers:"	
 			savedOIDS.append(oID)
